@@ -3,3 +3,4 @@ numpy
 streamlit
 gspread
 plotly.express
+seaborn
