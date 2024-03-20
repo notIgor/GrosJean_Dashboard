@@ -6,10 +6,20 @@ import plotly.express as px
 import seaborn as sns
 import streamlit as st
 
-path = r'driveintegration-370309-4c45ac8b0fa4.json'
+url = st.secrets["spreadsheet"]
+scopes = [
+    "https://www.googleapis.com/auth/spreadsheets",
+]
 
-gc = gs.service_account(filename=path)
-sh = gc.open_by_url('https://docs.google.com/spreadsheets/d/1htnZuo6YkMOcCLOlP7n4h51jD8hDhARID_iz_ay9O8U/edit?usp=sharing')
+skey = st.secrets["gcp_service_account"]
+credentials = Credentials.from_service_account_info(
+    skey,
+    scopes=scopes,
+)
+client = gspread.authorize(credentials)
+
+sh = client.open_by_url(url)
+
 wsp = sh.worksheet('CAMPIONATO PILOTI')
 wdc = sh.worksheet('CAMPIONATO DISTRUTTORI')
 tdb = sh.worksheet('Track_DB')
