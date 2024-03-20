@@ -11,7 +11,7 @@ scopes = [
     "https://www.googleapis.com/auth/spreadsheets",
 ]
 
-skey = st.secrets["gcp_service_account"]
+skey = st.secrets["private_key"]
 credentials = Credentials.from_service_account_info(
     skey,
     scopes=scopes,
