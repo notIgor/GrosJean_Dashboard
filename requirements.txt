@@ -4,3 +4,4 @@ streamlit
 gspread
 plotly.express
 seaborn
+Credentials
