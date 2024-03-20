@@ -6,7 +6,7 @@ import plotly.express as px
 import seaborn as sns
 import streamlit as st
 
-url = st.secrets["spreadsheet"]
+url = "https://docs.google.com/spreadsheets/d/1htnZuo6YkMOcCLOlP7n4h51jD8hDhARID_iz_ay9O8U/edit#gid=0"
 scopes = [
     "https://www.googleapis.com/auth/spreadsheets",
 ]
