@@ -25,9 +25,9 @@ def load_data(url,scopes):
     tdb = pd.DataFrame(sh.worksheet('Track_DB').get_all_records())
     pdb = pd.DataFrame(sh.worksheet('LOS SBINNADORES').get_all_values())
     pds = pd.DataFrame(sh.worksheet('IL PREDESBINNATO').get_all_values())
-    return df, dsdf, penaltydf, crashdf, tdf
+    return df, disdf, penaltydf, crashdf, tdf
 
-df, dsdf, penaltydf, crashdf, tdf = load_data(url,scopes)
+df, disdf, penaltydf, crashdf, tdf = load_data(url,scopes)
 #function to reindex dataset to get the kpi's values
 def reindex_dataframe(dataframe):
     dataframe.drop(dataframe.columns[:2],axis=1,inplace=True)
