@@ -23,11 +23,11 @@ def load_data(url,scopes):
     df = pd.DataFrame(sh.worksheet('CAMPIONATO PILOTI').get_all_records())
     disdf = pd.DataFrame(sh.worksheet('CAMPIONATO DISTRUTTORI').get_all_values())
     tdf = pd.DataFrame(sh.worksheet('Track_DB').get_all_records())
-    penaltydf = pd.DataFrame(sh.worksheet('LOS SBINNADORES').get_all_values())
-    crashdf = pd.DataFrame(sh.worksheet('IL PREDESBINNATO').get_all_values())
+    penalty_df = pd.DataFrame(sh.worksheet('LOS SBINNADORES').get_all_values())
+    crash_df = pd.DataFrame(sh.worksheet('IL PREDESBINNATO').get_all_values())
     return df, disdf, penaltydf, crashdf, tdf
 
-df, disdf, penaltydf, crashdf, tdf = load_data(url,scopes)
+df, disdf, penalty_df, crash_df, tdf = load_data(url,scopes)
 #function to reindex dataset to get the kpi's values
 def reindex_dataframe(dataframe):
     dataframe.drop(dataframe.columns[:2],axis=1,inplace=True)
