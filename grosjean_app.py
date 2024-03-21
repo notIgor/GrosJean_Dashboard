@@ -11,15 +11,18 @@ scopes = [
     "https://www.googleapis.com/auth/spreadsheets",
 ]
 
-skey = st.secrets["connection_gspread"]
-credentials = Credentials.from_service_account_info(
-    skey,
-    scopes=scopes,
-)
-client = gs.authorize(credentials)
+@st.cache_data
+def load_ws(url):
+    skey = st.secrets["connection_gspread"]
+    credentials = Credentials.from_service_account_info(
+        skey,
+        scopes=scopes,
+    )
+    client = gs.authorize(credentials)
+    sh = client.open_by_url(url)
+    return sh
 
-sh = client.open_by_url(url)
-
+sh = load_ws(url)
 wsp = sh.worksheet('CAMPIONATO PILOTI')
 wdc = sh.worksheet('CAMPIONATO DISTRUTTORI')
 tdb = sh.worksheet('Track_DB')
