@@ -16,7 +16,7 @@ credentials = Credentials.from_service_account_info(
     skey,
     scopes=scopes,
 )
-client = gspread.authorize(credentials)
+client = gs.authorize(credentials)
 
 sh = client.open_by_url(url)
 
