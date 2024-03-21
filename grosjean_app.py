@@ -41,7 +41,7 @@ df = df.drop(df.columns[:1],axis=1)
 
 #distructor championship
 disdf = reindex_dataframe(disdf)
-disdf.drop(disdf.index[15:],axis=0,inplace=True)
+disdf.drop(disdf.index[17:],axis=0,inplace=True)
 
 
 #penalty count
