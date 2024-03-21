@@ -22,9 +22,9 @@ def load_data(url,scopes):
     sh = client.open_by_url(url)
     df = pd.DataFrame(sh.worksheet('CAMPIONATO PILOTI').get_all_records())
     disdf = pd.DataFrame(sh.worksheet('CAMPIONATO DISTRUTTORI').get_all_values())
-    tdb = pd.DataFrame(sh.worksheet('Track_DB').get_all_records())
-    pdb = pd.DataFrame(sh.worksheet('LOS SBINNADORES').get_all_values())
-    pds = pd.DataFrame(sh.worksheet('IL PREDESBINNATO').get_all_values())
+    tdf = pd.DataFrame(sh.worksheet('Track_DB').get_all_records())
+    penaltydf = pd.DataFrame(sh.worksheet('LOS SBINNADORES').get_all_values())
+    crashdf = pd.DataFrame(sh.worksheet('IL PREDESBINNATO').get_all_values())
     return df, disdf, penaltydf, crashdf, tdf
 
 df, disdf, penaltydf, crashdf, tdf = load_data(url,scopes)
