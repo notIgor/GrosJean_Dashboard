@@ -12,7 +12,7 @@ scopes = [
 ]
 
 @st.cache_data
-def load_ws(url,scopes):
+def load_data(url,scopes):
     skey = st.secrets["connection_gspread"]
     credentials = Credentials.from_service_account_info(
         skey,
@@ -20,14 +20,14 @@ def load_ws(url,scopes):
     )
     client = gs.authorize(credentials)
     sh = client.open_by_url(url)
-    return sh
+    list = [wsp,wdc,tdb,pdb,pds]
+    list[0] = sh.worksheet('CAMPIONATO PILOTI')
+    list[1] = sh.worksheet('CAMPIONATO DISTRUTTORI')
+    list[2] = sh.worksheet('Track_DB')
+    list[3] = sh.worksheet('LOS SBINNADORES')
+    list[4] = sh.worksheet('IL PREDESBINNATO')
+    return list[]
 
-sh = load_ws(url,scopes)
-wsp = sh.worksheet('CAMPIONATO PILOTI')
-wdc = sh.worksheet('CAMPIONATO DISTRUTTORI')
-tdb = sh.worksheet('Track_DB')
-pdb = sh.worksheet('LOS SBINNADORES')
-pds = sh.worksheet('IL PREDESBINNATO')
 
 #function to reindex dataset to get the kpi's values
 def reindex_dataframe(dataframe):
@@ -38,11 +38,11 @@ def reindex_dataframe(dataframe):
     return dataframe
 
 #driver championship dataframe
-df = pd.DataFrame(wsp.get_all_records())
+df = pd.DataFrame(list[0].get_all_records())
 df = df.drop(df.columns[:1],axis=1)
 
 #distructor championship
-disdf = pd.DataFrame(wdc.get_all_values())
+disdf = pd.DataFrame(list[1].get_all_values())
 disdf = reindex_dataframe(disdf)
 disdf.drop(disdf.index[15:],axis=0,inplace=True)
 
