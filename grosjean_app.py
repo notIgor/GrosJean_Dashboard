@@ -28,7 +28,7 @@ def load_data(url,scopes):
     list[4] = sh.worksheet('IL PREDESBINNATO')
     return list
 
-
+list = load_data(url,scopes)
 #function to reindex dataset to get the kpi's values
 def reindex_dataframe(dataframe):
     dataframe.drop(dataframe.columns[:2],axis=1,inplace=True)
