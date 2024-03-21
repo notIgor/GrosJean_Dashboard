@@ -12,7 +12,7 @@ scopes = [
 ]
 
 @st.cache_data
-def load_ws(url):
+def load_ws(url,scopes):
     skey = st.secrets["connection_gspread"]
     credentials = Credentials.from_service_account_info(
         skey,
@@ -22,7 +22,7 @@ def load_ws(url):
     sh = client.open_by_url(url)
     return sh
 
-sh = load_ws(url)
+sh = load_ws(url,scopes)
 wsp = sh.worksheet('CAMPIONATO PILOTI')
 wdc = sh.worksheet('CAMPIONATO DISTRUTTORI')
 tdb = sh.worksheet('Track_DB')
