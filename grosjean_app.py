@@ -11,7 +11,6 @@ scopes = [
     "https://www.googleapis.com/auth/spreadsheets",
 ]
 
-@st.cache_data
 def load_data(url,scopes):
     skey = st.secrets["connection_gspread"]
     credentials = Credentials.from_service_account_info(
