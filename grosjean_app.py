@@ -20,15 +20,14 @@ def load_data(url,scopes):
     )
     client = gs.authorize(credentials)
     sh = client.open_by_url(url)
-    list = []
-    list[0] = sh.worksheet('CAMPIONATO PILOTI')
-    list[1] = sh.worksheet('CAMPIONATO DISTRUTTORI')
-    list[2] = sh.worksheet('Track_DB')
-    list[3] = sh.worksheet('LOS SBINNADORES')
-    list[4] = sh.worksheet('IL PREDESBINNATO')
-    return list
+    df = pd.DataFrame(sh.worksheet('CAMPIONATO PILOTI').get_all_records())
+    disdf = pd.DataFrame(sh.worksheet('CAMPIONATO DISTRUTTORI').get_all_values())
+    tdb = pd.DataFrame(sh.worksheet('Track_DB').get_all_records)
+    pdb = pd.DaraFrame(sh.worksheet('LOS SBINNADORES').get_all_values())
+    pds = pd.DataFrame(sh.worksheet('IL PREDESBINNATO').get_all_values())
+    return df, dsdf, penaltydf, crashdf, tdf
 
-list = load_data(url,scopes)
+df, dsdf, penaltydf, crashdf, tdf = load_data(url,scopes)
 #function to reindex dataset to get the kpi's values
 def reindex_dataframe(dataframe):
     dataframe.drop(dataframe.columns[:2],axis=1,inplace=True)
@@ -38,25 +37,18 @@ def reindex_dataframe(dataframe):
     return dataframe
 
 #driver championship dataframe
-df = pd.DataFrame(list[0].get_all_records())
 df = df.drop(df.columns[:1],axis=1)
 
 #distructor championship
-disdf = pd.DataFrame(list[1].get_all_values())
 disdf = reindex_dataframe(disdf)
 disdf.drop(disdf.index[15:],axis=0,inplace=True)
 
 
 #penalty count
-penalty_df = pd.DataFrame(pdb.get_all_values())
 penalty_df = reindex_dataframe(penalty_df)
 
 #crashes count
-crash_df = pd.DataFrame(pds.get_all_values())
 crash_df = reindex_dataframe(crash_df)
-
-#track db
-tdf = pd.DataFrame(tdb.get_all_records())
 
 
 #function to clean missing values from csv and fixing the half point problem in Monza
