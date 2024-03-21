@@ -26,7 +26,7 @@ def load_data(url,scopes):
     list[2] = sh.worksheet('Track_DB')
     list[3] = sh.worksheet('LOS SBINNADORES')
     list[4] = sh.worksheet('IL PREDESBINNATO')
-    return list[]
+    return list
 
 
 #function to reindex dataset to get the kpi's values
