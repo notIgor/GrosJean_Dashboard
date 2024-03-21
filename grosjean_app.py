@@ -20,7 +20,7 @@ def load_data(url,scopes):
     )
     client = gs.authorize(credentials)
     sh = client.open_by_url(url)
-    list = [wsp,wdc,tdb,pdb,pds]
+    list = []
     list[0] = sh.worksheet('CAMPIONATO PILOTI')
     list[1] = sh.worksheet('CAMPIONATO DISTRUTTORI')
     list[2] = sh.worksheet('Track_DB')
